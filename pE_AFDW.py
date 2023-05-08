@@ -27,8 +27,8 @@ ln9,=plt.plot(x, y9, color='darkslategray',marker='8',label='pH 11',linestyle=':
 plt.legend(ncol=3,loc=2)
 plt.xlabel('Cultivated days',fontsize=16)
 plt.ylabel('AFDW (g/L)',color='brown',fontsize=16)
-plt.xticks(range(1,48,3)) #设置x轴刻度：range(最低值，最高值，步长）
-ticks=[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7] #指定坐标轴的刻度显示
+plt.xticks(range(1,48,3)) 
+ticks=[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7] 
 plt.yticks(ticks)
 #plt.grid(color='0.5',linestyle='--',linewidth='1')
 plt.title('Ash-free Dry Weight (g/L)',fontsize=16)
