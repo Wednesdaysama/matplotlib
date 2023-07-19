@@ -1,4 +1,6 @@
-# This script was coded by Fan Dong.
+'''
+@author: Fan Dong
+'''
 
 import matplotlib
 matplotlib.use('TkAgg')
