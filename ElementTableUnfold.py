@@ -1,3 +1,4 @@
+# This script was coded by Fan Dong.
 
 import matplotlib
 matplotlib.use('TkAgg')
