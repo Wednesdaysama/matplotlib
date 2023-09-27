@@ -27,7 +27,7 @@ ln9,=plt.plot(x, y9, color='darkslategray',marker='8',label='pH 11',linestyle=':
 plt.legend(ncol=3,loc=2)
 plt.xlabel('Cultivated days',fontsize=16)
 plt.ylabel('pH',color='brown',fontsize=16)
-plt.xticks(range(0,46,3)) #设置x轴刻度：range(最低值，最高值，步长）
+plt.xticks(range(0,46,3)) 
 ticks=[9.5,10,10.5,11,11.5,12]
 plt.yticks(ticks)
 plt.grid()
