@@ -1,40 +1,47 @@
 import numpy as np
 from scipy import stats
 
-# Define your data for groups A and B
-group_A_data = [
-    [0.38, 0.76, 0.72],
-    [0.34, 0.22, 0.42],
-    [0.84, 0.72, 0.78],
-    [0.38, 0.48, 0.64],
-    [0.66, 0.54, 0.52]
-]
+# Define data for groups A, B, C, and D
+group_A_data = np.array([
+    0.00149, 0.00155, 0.00158,
+    0.00130, 0.00155, 0.00149,
+    0.00124, 0.00180, 0.00140,
+    0.00161, 0.00186, 0.00174,
+    0.00146, 0.00174, 0.00124,
+    0.00211, 0.00205, 0.00180
+])
 
+group_B_data = np.array([
+    0.00126, 0.00104, 0.00096,
+    0.00143, 0.00126, 0.00117,
+    0.00105, 0.00090, 0.00071,
+    0.00118, 0.00105, 0.00090
+])
 
-data_A = np.concatenate(group_A_data)
+group_C_data = np.array([
+    0.00055, 0.00078, 0.00096,
+    0.00040, 0.00096, 0.00071,
+    0.00130, 0.00084, 0.00087,
+    0.00115, 0.00090, 0.00071,
+    0.00090, 0.00124, 0.00133
+])
 
-mean_A = np.mean(data_A)
-std_dev_A = np.std(data_A)
+group_D_data = np.array([
+    0.00118, 0.00236, 0.00223,
+    0.00105, 0.00068, 0.00130,
+    0.00261, 0.00223, 0.00242,
+    0.00118, 0.00149, 0.00199,
+    0.00205, 0.00168, 0.00161
+])
 
-group_B_data = [
-    [0.034115, 0.035814, 0.03498],
-    [0.02669, 0.02298, 0.038103]
-]
+# Perform t-tests and print results
+groups = [group_A_data, group_B_data, group_C_data, group_D_data]
+group_names = ['Group A', 'Group B', 'Group C', 'Group D']
 
-
-data_A = np.concatenate(group_A_data)
-data_B = np.concatenate(group_B_data)
-
-t_statistic, p_value = stats.ttest_ind(data_A, data_B)
-mean_A = np.mean(data_A)
-std_dev_A = np.std(data_A)
-mean_B = np.mean(data_B)
-std_dev_B = np.std(data_B)
-
-print(f"Group A - Mean: {mean_A}, Standard Deviation: {std_dev_A}")
-print(f"Group B - Mean: {mean_B}, Standard Deviation: {std_dev_B}")
-
-#print(f"T-statistic: {t_statistic}")
-
-print(f"P-value: {p_value}")
-
+for i in range(len(groups)):
+    for j in range(i + 1, len(groups)):
+        t_statistic, p_value = stats.ttest_ind(groups[i], groups[j])
+        print(f"Comparison between {group_names[i]} and {group_names[j]}:")
+        print(f"  T-statistic: {t_statistic}")
+        print(f"  P-value: {p_value}")
+        print("\n")
