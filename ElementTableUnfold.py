@@ -1,6 +1,3 @@
-'''
-@author: Fan Dong
-'''
 
 import matplotlib
 matplotlib.use('TkAgg')
@@ -37,44 +34,45 @@ def plot(df: pd.DataFrame, file_name: str):
         if df.columns[j].startswith('A'):
             if label_count[0] == 0:
                 label_count[0] += 1
-                label = 'pH 10'
+                label = 'pH 10.2'
             else:
                 label = None
             plt.scatter(df.index.values, df.iloc[:, j].values, color='darkorange', marker='>', label=label)
         elif df.columns[j].startswith('B'):
             if label_count[1] == 0:
                 label_count[1] += 1
-                label = 'pH 10.5'
+                label = 'pH 10.7'
             else:
                 label = None
             plt.scatter(df.index.values, df.iloc[:, j].values, color='lightgreen', marker='^', label=label)
         elif df.columns[j].startswith('C'):
             if label_count[2] == 0:
                 label_count[2] += 1
-                label = 'pH 11'
+                label = 'pH 11.2'
             else:
                 label = None
             plt.scatter(df.index.values, df.iloc[:, j].values, color='gold', marker='s', label=label)
         elif df.columns[j].startswith('SL'):
             if label_count[3] == 0:
                 label_count[3] += 1
-                label = 'SL'
+                label = 'FS-pH 10.5'
             else:
                 label = None
-            plt.scatter(df.index.values, df.iloc[:, j].values, color='mediumpurple', marker='o', label=label)
+            plt.scatter(df.index.values, df.iloc[:, j].values, color='skyblue', marker='o', label=label)
         else:
             raise ValueError("None of [A, B, C, SL]")
-    plt.legend(ncol=1, loc=1)
+    plt.ylim(bottom=0)
+    plt.legend(ncol=2, loc=2)
     plt.xlabel('Cultivated days', fontsize=16)
-    plt.ylabel(f'{file_name} (mg/L)', color='brown', fontsize=16)
+    plt.ylabel('CO${_3}^{2-}$/HCO$_3^-$', color='brown', fontsize=16)    #plt.ylabel(f'{file_name}  (meq/L)', color='brown', fontsize=16) #change the unit
     plt.xticks(range(1, 48, 3))
-    plt.savefig(r'D:\Pycharm\project\results\%s.pdf' % file_name, bbox_inches='tight')
+    plt.savefig(r'D:\OneDrive - University of Calgary\pH experiment\Manuscript\Data\figures_by_groups\%s.pdf' % file_name, bbox_inches='tight')
     plt.close()
 
 
 if __name__ == '__main__':
     # input data
-    source_data = pd.read_excel(r'D:\OneDrive - University of Calgary\pH experiment\ICP\ICP.xlsx', sheet_name='Sheet1').iloc[5:, :]
+    source_data = pd.read_excel(r'D:\OneDrive - University of Calgary\pH experiment\Manuscript\Data\pE_all_data.xlsx', sheet_name='ratio')
     # Preprocess data
     for i in range(1, source_data.shape[1]):
         df_preprocessed = unfold(source_data.iloc[:, [0, i]])
