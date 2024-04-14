@@ -17,26 +17,29 @@ new_name_2 = ["0", "6", "20\n\n  pH 10.2", '32', '44', "0", "6", "20\n\n  pH 10.
 t_day = dict(zip(new_name, new_name_2))
 df_melted['tt'] = [t_day[x] for x in df_melted['t']]
 df_melted['value'] = [None if x == 0 else x for x in df_melted['value']]
+
 plt.figure(figsize=(8, 10), dpi=150)
 ax = sns.scatterplot(data=df_melted, x='t', y='Genus', size='value', sizes=(0, 600))
-ax.legend(bbox_to_anchor=(0.995, 1.02), loc=2, labelspacing=1, handlelength=1, fontsize=15)
+ax.legend(bbox_to_anchor=(-0.42, 0.9), labelspacing=1, handlelength=1, fontsize=15)
 ax = sns.scatterplot(data=df_melted, x='t', y='Genus', size='value', hue='Group', sizes=(0, 650), legend=False)
 sns.set_style('ticks')
 ytick_labels = ax.get_yticklabels()
 for label in ytick_labels:
     if label.get_text() in ["Sodalinema", "Nodosilinea", "Spirulina", "Caldora", "Synechocystis", "Cyanobacterium"]:
         label.set_color('purple')
+        label.set_fontsize(18)
     else:
         label.set_color('black')
-plt.ylabel('Relative abundance (2% cut off)', color='brown', fontsize=16, labelpad=-10)
-plt.gca().yaxis.set_label_coords(-0.2, 0.5)
+        label.set_fontsize(18)
+plt.ylabel('Relative abundance', color='brown', fontsize=18, labelpad=-9)
+plt.gca().yaxis.set_label_coords(-0.5, 0.5)
 plt.xlabel("")
 xtick_labels = ax.get_xticklabels()
-plt.text(-0.15, -0.025, "Cultivated days", transform=ax.transAxes, fontsize=11)
+plt.text(-0.29, -0.031, "Cultivated days", transform=ax.transAxes, fontsize=18)
 colors = ["#1F77B4"] * 5 + ["#FF7F0E"] * 5 + ["#2CA02C"] * 3 + ["#a51b0b"] * 5
 for i in range(len(xtick_labels)):
     xtick_labels[i].set_color(colors[i])
 xticks = plt.xticks()[0]
-plt.xticks(xticks, new_name_2, fontsize=10)
+plt.xticks(xticks, new_name_2, fontsize=16)
 plt.savefig(r'D:\OneDrive - University of Calgary\pH experiment\Manuscript\Data\figures_by_groups\rela_abund', bbox_inches='tight')
 plt.close()
